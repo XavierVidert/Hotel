@@ -1,4 +1,11 @@
-<select id="quarto">
-    <option th:each="quarto : ${quartos}" th:value="${quarto.id}"
-        th:text="${quarto.nome}"></option>
-</select>
+<div class="col-12">
+    <select id="quarto" class="form-select" onchange="atualizaValores(this)">
+        <option disabled selected>Selecione um quarto...</option>
+        <option th:each="quarto : ${quartos}"
+                th:value="${quarto.id}"
+                th:text="${quarto.nome}"
+                th:data-preco="${quarto.preco}"
+                th:data-capacidade="${quarto.capacidadeHospedes}"
+        ></option>
+    </select>
+</div>
