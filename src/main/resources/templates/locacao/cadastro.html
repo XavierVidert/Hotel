@@ -62,14 +62,14 @@
             <div class="input-group mb-3">
                 <span class="input-group-text" id="spDataIn">Check-In</span>
                 <input id="checkin" type="date" class="form-control" placeholder="Username" aria-label="Username"
-                       aria-describedby="spDataIn">
+                       aria-describedby="spDataIn" th:value="${dataAtual}" th:min="${dataAtual}">
             </div>
         </div>
         <div class="col-5">
             <div class="input-group mb-3">
                 <span class="input-group-text" id="spDataOut">Check-Out</span>
                 <input id="checkout" type="date" class="form-control" placeholder="Username" aria-label="Username"
-                       aria-describedby="spDataOut">
+                       aria-describedby="spDataOut" th:value="${proximoDia}" th:min="${dataAtual}">
             </div>
         </div>
         <div class="col-2">
