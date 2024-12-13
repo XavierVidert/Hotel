@@ -27,6 +27,6 @@ public class C_Reserva {
                                       HttpSession session){
         M_Usuario m_usuario = (M_Usuario) session.getAttribute("usuario");
         return this.s_reserva.realizarReserva(checkin,
-                checkout,quarto,m_usuario.getId());
+                checkout,quarto,m_usuario);
     }
 }

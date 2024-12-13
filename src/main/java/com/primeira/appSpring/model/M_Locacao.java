@@ -10,13 +10,21 @@ public class M_Locacao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private LocalDateTime checkIn;
     private LocalDateTime checkOut;
     private String senha;
-    private Long idUsuario;
-    private Long idQuarto;
     private Double preco;
 
+    @ManyToOne
+    @JoinColumn(name = "id_usuario", nullable = false)
+    private M_Usuario usuario;
+
+    @ManyToOne
+    @JoinColumn(name = "id_quarto", nullable = false)
+    private M_Quarto quarto;
+
+    // Getters e Setters
     public Long getId() {
         return id;
     }
@@ -49,27 +57,27 @@ public class M_Locacao {
         this.senha = senha;
     }
 
-    public Long getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(Long idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-
-    public Long getIdQuarto() {
-        return idQuarto;
-    }
-
-    public void setIdQuarto(Long idQuarto) {
-        this.idQuarto = idQuarto;
-    }
-
     public Double getPreco() {
         return preco;
     }
 
     public void setPreco(Double preco) {
         this.preco = preco;
+    }
+
+    public M_Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(M_Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public M_Quarto getQuarto() {
+        return quarto;
+    }
+
+    public void setQuarto(M_Quarto quarto) {
+        this.quarto = quarto;
     }
 }

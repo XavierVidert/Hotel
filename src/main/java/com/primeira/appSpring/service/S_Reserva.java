@@ -3,6 +3,7 @@ package com.primeira.appSpring.service;
 import com.primeira.appSpring.model.M_Locacao;
 import com.primeira.appSpring.model.M_Quarto;
 import com.primeira.appSpring.model.M_Resposta;
+import com.primeira.appSpring.model.M_Usuario;
 import com.primeira.appSpring.repository.R_Locacao;
 import com.primeira.appSpring.repository.R_Quarto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class S_Reserva {
     private R_Quarto r_quarto;
 
     public M_Resposta realizarReserva(String checkin, String checkout,
-                                      Long quarto, Long usuario){
+                                      Long quarto, M_Usuario usuario){
         String mensagem = "";
         boolean podeSalvar = true;
         LocalDateTime entrada = null;
@@ -59,8 +60,8 @@ public class S_Reserva {
                 m_locacao = new M_Locacao();
                 m_locacao.setCheckIn(entrada);
                 m_locacao.setCheckOut(saida);
-                m_locacao.setIdUsuario(usuario);
-                m_locacao.setIdQuarto(quarto);
+                m_locacao.setUsuario(usuario);
+                m_locacao.setQuarto(m_quarto);
                 m_locacao.setPreco(m_quarto.getPreco());
                 Random rand = new Random();
                 m_locacao.setSenha(String.valueOf(rand.nextInt(1000, 10000)));
