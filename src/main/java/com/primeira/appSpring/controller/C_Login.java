@@ -20,8 +20,10 @@ public class C_Login {
     @GetMapping("/")
     public String getLogin(HttpSession session,
                            Model model){
-        if(session.getAttribute("usuario") != null){
-            model.addAttribute("usuarios", s_home.getUsuarios());
+        M_Usuario m_usuario = (M_Usuario) session.getAttribute("usuario");
+        if(m_usuario != null){
+            model.addAttribute("em_curso",
+                    s_home.getLocacoesEmCurso(m_usuario.getId()));
             return "home/home";
         }
         return "index";

@@ -1,5 +1,6 @@
 package com.primeira.appSpring.controller;
 
+import com.primeira.appSpring.model.M_Resposta;
 import com.primeira.appSpring.model.M_Usuario;
 import com.primeira.appSpring.service.S_Reserva;
 import jakarta.servlet.http.HttpSession;
@@ -20,12 +21,12 @@ public class C_Reserva {
 
     @PostMapping("/reservar")
     @ResponseBody
-    public Boolean realizarReserva(@RequestParam("checkin") String checkin,
-                                   @RequestParam("checkout") String checkout,
-                                   @RequestParam("quarto") Long quarto,
-                                   HttpSession session){
+    public M_Resposta realizarReserva(@RequestParam("checkin") String checkin,
+                                      @RequestParam("checkout") String checkout,
+                                      @RequestParam("quarto") Long quarto,
+                                      HttpSession session){
         M_Usuario m_usuario = (M_Usuario) session.getAttribute("usuario");
         return this.s_reserva.realizarReserva(checkin,
-                checkout,quarto,m_usuario.getId()) != null;
+                checkout,quarto,m_usuario.getId());
     }
 }
