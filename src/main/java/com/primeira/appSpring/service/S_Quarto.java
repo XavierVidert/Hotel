@@ -13,6 +13,6 @@ public class S_Quarto {
     private R_Quarto r_quarto;
 
     public List<M_Quarto> getQuartosDisponiveis(String checkIn, String checkOut){
-        return r_quarto.getQuartosDisponiveisPeriodo(checkIn,checkOut);
+        return r_quarto.getQuartosDisponiveisPeriodo(checkIn+" 14:00",checkOut+" 10:00");
     }
 }

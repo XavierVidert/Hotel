@@ -22,8 +22,9 @@ public class C_Login {
                            Model model){
         M_Usuario m_usuario = (M_Usuario) session.getAttribute("usuario");
         if(m_usuario != null){
-            model.addAttribute("em_curso",
-                    s_home.getLocacoesEmCurso(m_usuario.getId()));
+            model.addAttribute("em_curso",s_home.getLocacoesEmCurso(m_usuario.getId()));
+            model.addAttribute("futuras",s_home.getLocacoesFuturas(m_usuario.getId()));
+            model.addAttribute("realizadas",s_home.getLocacoesRealizas(m_usuario.getId()));
             return "home/home";
         }
         return "index";

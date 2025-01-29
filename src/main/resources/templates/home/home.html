@@ -62,18 +62,15 @@
     <div class="row">
         <div class="col-4" id="realizadas">
             <h4 class="text-center">Realizadas</h4>
-        </div>
-        <div class="col-4" id="em_curso">
-            <h4 class="text-center">Em curso</h4>
             <hr/>
-            <div class="row card_locacao" th:each="locacao : ${em_curso}">
+            <div class="row card_locacao" th:each="locacao : ${realizadas}">
                 <div class="col-6" >
                     <span><b>Quarto: </b></span>
-                    <span th:text="${locacao.idQuarto}"></span>
+                    <span th:text="${locacao.nome}"></span>
                 </div>
                 <div class="col-6">
                     <span><b>Preço: </b></span>
-                    <span th:text="${locacao.preco}"></span>
+                    <span th:text="${#numbers.formatDecimal(locacao.preco * locacao.diarias, 2, 2)}"></span>
                 </div>
                 <div class="col-6" >
                     <span><b>Check-In: </b></span>
@@ -83,14 +80,75 @@
                     <span><b>Check-Out: </b></span>
                     <span th:text="${#temporals.format(locacao.checkOut, 'dd/MM/yyyy HH:mm')}"></span>
                 </div>
-                <div class="col-12">
+                <div class="col-6">
                     <span><b>Senha: </b></span>
                     <span th:text="${locacao.senha}"></span>
+                </div>
+                <div class="col-6">
+                    <span><b>Diárias: </b></span>
+                    <span th:text="${locacao.diarias}"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-4" id="em_curso">
+            <h4 class="text-center">Em curso</h4>
+            <hr/>
+            <div class="row card_locacao" th:each="locacao : ${em_curso}">
+                <div class="col-6" >
+                    <span><b>Quarto: </b></span>
+                    <span th:text="${locacao.nome}"></span>
+                </div>
+                <div class="col-6">
+                    <span><b>Preço: </b></span>
+                    <span th:text="${#numbers.formatDecimal(locacao.preco * locacao.diarias, 2, 2)}"></span>
+                </div>
+                <div class="col-6" >
+                    <span><b>Check-In: </b></span>
+                    <span th:text="${#temporals.format(locacao.checkIn, 'dd/MM/yyyy HH:mm')}"></span>
+                </div>
+                <div class="col-6">
+                    <span><b>Check-Out: </b></span>
+                    <span th:text="${#temporals.format(locacao.checkOut, 'dd/MM/yyyy HH:mm')}"></span>
+                </div>
+                <div class="col-6">
+                    <span><b>Senha: </b></span>
+                    <span th:text="${locacao.senha}"></span>
+                </div>
+                <div class="col-6">
+                    <span><b>Diárias: </b></span>
+                    <span th:text="${locacao.diarias}"></span>
                 </div>
             </div>
         </div>
         <div class="col-4" id="reservas">
             <h4 class="text-center">Reservas</h4>
+            <hr/>
+            <div class="row card_locacao" th:each="locacao : ${futuras}">
+                <div class="col-6" >
+                    <span><b>Quarto: </b></span>
+                    <span th:text="${locacao.nome}"></span>
+                </div>
+                <div class="col-6">
+                    <span><b>Preço: </b></span>
+                    <span th:text="${#numbers.formatDecimal(locacao.preco * locacao.diarias, 2, 2)}"></span>
+                </div>
+                <div class="col-6" >
+                    <span><b>Check-In: </b></span>
+                    <span th:text="${#temporals.format(locacao.checkIn, 'dd/MM/yyyy HH:mm')}"></span>
+                </div>
+                <div class="col-6">
+                    <span><b>Check-Out: </b></span>
+                    <span th:text="${#temporals.format(locacao.checkOut, 'dd/MM/yyyy HH:mm')}"></span>
+                </div>
+                <div class="col-6">
+                    <span><b>Senha: </b></span>
+                    <span th:text="${locacao.senha}"></span>
+                </div>
+                <div class="col-6">
+                    <span><b>Diárias: </b></span>
+                    <span th:text="${locacao.diarias}"></span>
+                </div>
+            </div>
         </div>
     </div>
 </div>
