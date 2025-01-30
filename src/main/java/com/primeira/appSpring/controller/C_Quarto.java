@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class C_Quarto {
-    @Autowired
     private final S_Quarto s_quarto;
 
     public C_Quarto(S_Quarto s_quarto) {

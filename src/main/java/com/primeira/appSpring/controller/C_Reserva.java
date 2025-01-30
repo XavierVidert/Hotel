@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class C_Reserva {
-    @Autowired
     private final S_Reserva s_reserva;
 
     public C_Reserva(S_Reserva s_reserva) {

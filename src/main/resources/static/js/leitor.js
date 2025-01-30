@@ -8,11 +8,16 @@ function lerProduto(){
 		inputStream: {
 			name: "Live",
 			type: "LiveStream",
-			target: $('#camera')[0]
+			target: $('#camera')[0],
+			constraints: {
+			    width: 640,
+			    height: 200,
+			}
 		},
 		decoder: {
-			readers: ['ean_reader']
-		}
+			readers: ['code_128_reader','ean_reader']
+		},
+		debug: true
 	}, function(err) {
 		if (err) {
 			console.log(err);
@@ -42,5 +47,20 @@ function lerProduto(){
 
 function insereProduto(codigo){
 	$("#codBarras").val(codigo);
-	$("#fake").removeClass("d-none");
+    selecionarProdutoPorCodigoBarras(codigo)
+}
+
+function selecionarProdutoPorCodigoBarras(codBarras) {
+    // Obter todos os itens do datalist
+    const options = document.querySelectorAll('#produtos option');
+
+    // Loop para verificar cada opção
+    options.forEach(option => {
+        if (option.getAttribute('data-cod-barras') === codBarras) {
+            const input = document.getElementById('produto');
+            input.value = option.value;
+            const event = new Event('change');
+            input.dispatchEvent(event);
+        }
+    });
 }

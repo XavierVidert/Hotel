@@ -23,17 +23,15 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <!--Custom-->
     <script src="/js/leitor.js" defer></script>
+    <script src="/js/consumo.js" defer></script>
     <style type="text/css">
-        #camera-container {
-            max-height: 15vw;
-            border: 1px solid black;
-            border-radius: 10px;
-            overflow: hidden;
-            transition: all 0.3s ease-in-out;
-        }
         #camera video {
             width: 100%;
-            height: auto;
+            border: 1px solid black;
+            border-radius: 10px;
+        }
+        canvas{
+            display:none;
         }
         #buttons {
             padding: 3px;
@@ -45,11 +43,6 @@
         #leitor{
             border-left: 1px solid black;
         }
-
-
-
-
-
     </style>
 </head>
 <body>
@@ -87,10 +80,10 @@
     </div>
 </nav>
 <div class="container">
-    <div class="leitor-container row">
-        <div class="col-8">
+    <div class="leitor-container row mt-3">
+        <div class="col-8 mb-3">
             <div class="row">
-                <div class="col-4">
+                <div class="col-md-4">
                     <div class="input-group mb-3 mt-3">
                         <span class="input-group-text" id="spCodBarras"><i class="fa-solid fa-barcode"></i></span>
                         <input id="codBarras" type="number" class="form-control" placeholder="Código de barras"
@@ -98,17 +91,36 @@
                                aria-describedby="spCodBarras" disabled>
                     </div>
                 </div>
-                <div class="col-8">
+                <div class="col-md-8">
                     <div class="input-group mb-3 mt-3">
-                        <span class="input-group-text" id="spNomeProduto">@</span>
-                        <input id="nomeProduto" type="text" class="form-control" placeholder="Produto"
+                        <span class="input-group-text" id="spNomeProduto"><i class="fa-solid fa-utensils"></i></span>
+                        <input id="produto" list="produtos" class="form-control" placeholder="Produto"
                                aria-label="nomeProduto"
                                aria-describedby="spNomeProduto">
+                        <datalist id="produtos">
+                            <option th:each="produto : ${produtos}" th:value="${produto.descricao}"
+                                    th:attr="data-id=${produto.id},
+                                    data-cod-barras=${produto.cod_barras},
+                                    data-preco=${produto.preco}">
+                        </datalist>
                     </div>
-                    <div id="fake" class="d-none">
-                        <div class=""><b>Descrição: </b>Energético Monster Lata 473 ml</div>
-                        <div class=""><b>Valor: </b>R$ 10,00</div>
+                </div>
+                <div class="col-md-3 d-none infoProduto">
+                    <div class="input-group">
+                        <span class="input-group-text" id="spQtdProduto">Qtd.</span>
+                        <input id="qtdProduto" type="number" class="form-control" placeholder="Quantidade"
+                               aria-label="qtdProduto"
+                               aria-describedby="spQtdProduto" min="1">
                     </div>
+                </div>
+                <div class="col-md-3 d-none infoProduto d-flex align-items-center">
+                    <b>Valor Un.: </b><span id="valorProduto"></span>
+                </div>
+                <div class="col-md-3 d-none infoProduto d-flex align-items-center">
+                    <b>Valor Total: </b><span id="valorTotalProduto"></span>
+                </div>
+                <div class="col-md-3 d-none infoProduto d-flex align-items-center">
+                    <a class="btn btn-primary w-100">Incluir</a>
                 </div>
             </div>
         </div>

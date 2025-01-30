@@ -13,6 +13,12 @@ import java.time.LocalDate;
 
 @Controller
 public class C_Cadastro {
+    private final S_Cadastro s_cadastro;
+
+    public C_Cadastro(S_Cadastro s_cadastro) {
+        this.s_cadastro = s_cadastro;
+    }
+
     //USUÁRIO
     @GetMapping("/cadastro")
     public String getCadastro(){
@@ -24,7 +30,7 @@ public class C_Cadastro {
                                @RequestParam("apelido") String apelido,
                                @RequestParam("senha") String senha,
                                @RequestParam("conf_senha") String conf_senha){
-        M_Usuario m_usuario = S_Cadastro.cadastrarUsuario(usuario, apelido, senha, conf_senha);
+        M_Usuario m_usuario = s_cadastro.cadastrarUsuario(usuario, apelido, senha, conf_senha);
         if(m_usuario != null){
             return "index";
         }
