@@ -2,24 +2,19 @@ package com.primeira.appSpring.controller;
 
 import com.primeira.appSpring.model.M_Usuario;
 import com.primeira.appSpring.service.S_Cadastro;
-import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.time.LocalDate;
-
 @Controller
-public class C_Cadastro {
+public class C_Usuario {
     private final S_Cadastro s_cadastro;
 
-    public C_Cadastro(S_Cadastro s_cadastro) {
+    public C_Usuario(S_Cadastro s_cadastro) {
         this.s_cadastro = s_cadastro;
     }
 
-    //USUÁRIO
     @GetMapping("/cadastro")
     public String getCadastro(){
         return "cadastro/cadastro";
@@ -35,18 +30,5 @@ public class C_Cadastro {
             return "index";
         }
         return "cadastro/cadastro";
-    }
-
-    //LOCAÇÃO
-    @GetMapping("/cadLocacao")
-    public String getCadLocacao(HttpSession session,
-                                Model model){
-        if(session.getAttribute("usuario") != null){
-            LocalDate dataAtual = LocalDate.now();
-            model.addAttribute("dataAtual", dataAtual);
-            model.addAttribute("proximoDia", dataAtual.plusDays(1));
-            return "locacao/cadastro";
-        }
-        return "redirect:/";
     }
 }

@@ -3,6 +3,7 @@ package com.primeira.appSpring.controller;
 import com.primeira.appSpring.service.S_Consumo;
 import com.primeira.appSpring.service.S_Produto;
 import com.primeira.appSpring.service.S_Reserva;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,19 +25,27 @@ public class C_Consumos {
 
     @GetMapping("/consumo/{id}")
     public String getConsumos(@PathVariable("id") Long id,
-                              Model model){
-        model.addAttribute("locacao",s_reserva.getLocacaoById(id));
-        model.addAttribute("produtos", s_produto.getProdutos());
-        model.addAttribute("consumos",s_consumo.getConsumos(id));
-        return "consumos/consumo";
+                              Model model,
+                              HttpSession session){
+        if(session.getAttribute("usuario") != null) {
+            model.addAttribute("locacao", s_reserva.getLocacaoById(id));
+            model.addAttribute("produtos", s_produto.getProdutos());
+            model.addAttribute("consumos", s_consumo.getConsumos(id));
+            return "consumos/consumo";
+        }
+        return "redirect:/";
     }
 
     @PostMapping("/consumo")
     public String getItemConsumo(@RequestParam("locacao") Long idLocacao,
                                  @RequestParam("produto") Long idProduto,
                                  @RequestParam("quantidade") Integer quantidade,
-                                 Model model){
-        model.addAttribute("consumo",s_consumo.salvarConsumo(idProduto,idLocacao,quantidade));
-        return "consumos/item";
+                                 Model model,
+                                 HttpSession session){
+        if(session.getAttribute("usuario") != null) {
+            model.addAttribute("consumo", s_consumo.salvarConsumo(idProduto, idLocacao, quantidade));
+            return "consumos/item";
+        }
+        return "redirect:/";
     }
 }

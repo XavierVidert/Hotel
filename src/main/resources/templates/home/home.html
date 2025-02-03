@@ -69,8 +69,8 @@
                     <span th:text="${locacao.nome}"></span>
                 </div>
                 <div class="col-6">
-                    <span><b>Preço: </b></span>
-                    <span th:text="${#numbers.formatDecimal(locacao.preco * locacao.diarias, 2, 2)}"></span>
+                    <span><b>Valor Diária: </b></span>
+                    <span th:text="${#numbers.formatDecimal(locacao.preco, 1, 2)}"></span>
                 </div>
                 <div class="col-6" >
                     <span><b>Check-In: </b></span>
@@ -100,7 +100,7 @@
                 </div>
                 <div class="col-6">
                     <span><b>Preço: </b></span>
-                    <span th:text="${#numbers.formatDecimal(locacao.preco * locacao.diarias, 2, 2)}"></span>
+                    <span th:text="${#numbers.formatDecimal(locacao.preco * locacao.diarias, 1, 2)}"></span>
                 </div>
                 <div class="col-6" >
                     <span><b>Check-In: </b></span>
@@ -133,7 +133,7 @@
                 </div>
                 <div class="col-6">
                     <span><b>Preço: </b></span>
-                    <span th:text="${#numbers.formatDecimal(locacao.preco * locacao.diarias, 2, 2)}"></span>
+                    <span th:text="${#numbers.formatDecimal(locacao.preco * locacao.diarias, 1, 2)}"></span>
                 </div>
                 <div class="col-6" >
                     <span><b>Check-In: </b></span>
