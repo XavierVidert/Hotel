@@ -36,13 +36,36 @@
         #buttons {
             padding: 3px;
         }
-        .leitor-container{
+        .leitor-container, .consumos-container{
             border: 1px solid black;
             border-radius: 0.325rem;
         }
         #leitor{
             border-left: 1px solid black;
         }
+        .separador-produto{
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+        #consumos-container {
+            max-height: 60vh; /* Ajuste conforme necessário */
+            overflow-y: auto;
+            border: 1px solid black;
+            border-radius: 0.325rem;
+            padding: 0 10px 10px 10px;
+        }
+
+        #consumos-container .row:first-child {
+            position: sticky;
+            top: 0;
+            background: white;
+            z-index: 10;
+            border-bottom: 2px solid black;
+            padding: 10px 0;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
     </style>
 </head>
 <body>
@@ -120,7 +143,7 @@
                     <b>Valor Total: </b><span id="valorTotalProduto"></span>
                 </div>
                 <div class="col-md-3 d-none infoProduto d-flex align-items-center">
-                    <a class="btn btn-primary w-100">Incluir</a>
+                    <a id="btnIncluir" class="btn btn-primary w-100" th:attr="data-locacao=${locacao.id}">Incluir</a>
                 </div>
             </div>
         </div>
@@ -130,6 +153,47 @@
             </div>
             <div id="camera-container" class="d-none">
                 <div id="camera"></div>
+            </div>
+        </div>
+    </div>
+    <div id="consumos-container" class="consumos-container row mt-2">
+        <div class="row">
+            <div class="col-12">
+                <h4 class="text-center">Consumos Locação: <span th:text="${locacao.id}"></span></h4>
+            </div>
+            <div class="col-sm-4">
+                <h6 class="text-center">Quarto: <span th:text="${locacao.quarto.nome}"></span></h6>
+            </div>
+            <div class="col-sm-4">
+                <h6 class="text-center">Check-In: <span
+                        th:text="${#temporals.format(locacao.checkIn, 'dd/MM/yyyy HH:mm')}"></span></h6>
+            </div>
+            <div class="col-sm-4">
+                <h6 class="text-center">Check-Out: <span
+                        th:text="${#temporals.format(locacao.checkOut, 'dd/MM/yyyy HH:mm')}"></span></h6>
+            </div>
+        </div>
+        <div id="itens-consumo">
+            <div th:each="consumo : ${consumos}" class="item-consumo">
+                <hr class="separador-produto">
+                <div class="row">
+                    <div class="col-md-8">
+                        <b>Produto: </b><span th:text="${consumo.produto.descricao}"></span>
+                    </div>
+                    <div class="col-md-4">
+                        <b>Data: </b><span th:text="${#temporals.format(consumo.data, 'dd/MM/yyyy HH:mm')}"></span>
+                    </div>
+                    <div class="col-md-4">
+                        <b>Valor Un.: </b>R$ <span th:text="${#numbers.formatDecimal(consumo.preco, 1, 2)}"></span>
+                    </div>
+                    <div class="col-md-4">
+                        <b>Quantidade: </b><span th:text="${consumo.quantidade}"></span>
+                    </div>
+                    <div class="col-md-4">
+                        <b>Total : </b>R$ <span
+                            th:text="${#numbers.formatDecimal(consumo.preco * consumo.quantidade, 1, 2)}"></span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

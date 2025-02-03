@@ -74,4 +74,8 @@ public class S_Reserva {
         }
         return new M_Resposta(podeSalvar, mensagem);
     }
+
+    public M_Locacao getLocacaoById(Long id){
+        return r_locacao.findById(id).orElse(null);
+    }
 }

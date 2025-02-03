@@ -24,6 +24,7 @@ public interface R_Locacao extends JpaRepository<M_Locacao, Long> {
                                         @Param("check_out") LocalDateTime check_out);
 
     @Query(value="select " +
+            "locacao.id, " +
             "quarto.nome, " +
             "locacao.preco, " +
             "locacao.senha, " +
@@ -41,6 +42,7 @@ public interface R_Locacao extends JpaRepository<M_Locacao, Long> {
     List<M_ViewLocacao> getLocacoesEmCurso(@Param("id_usuario") Long id_usuario);
 
     @Query(value="select " +
+            "locacao.id, " +
             "quarto.nome, " +
             "locacao.preco, " +
             "locacao.senha, " +
@@ -58,6 +60,7 @@ public interface R_Locacao extends JpaRepository<M_Locacao, Long> {
     List<M_ViewLocacao> getLocacoesFuturas(@Param("id_usuario") Long id_usuario);
 
     @Query(value="select " +
+            "locacao.id, " +
             "quarto.nome, " +
             "locacao.preco, " +
             "locacao.senha, " +

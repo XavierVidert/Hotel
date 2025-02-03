@@ -15,4 +15,8 @@ public class S_Produto {
     public List<M_Produto> getProdutos(){
         return r_produto.findAll();
     }
+
+    public M_Produto getProdutoById(Long id){
+        return r_produto.getReferenceById(id);
+    }
 }

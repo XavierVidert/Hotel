@@ -24,6 +24,13 @@ public class M_Locacao {
     @JoinColumn(name = "id_quarto", nullable = false)
     private M_Quarto quarto;
 
+    public M_Locacao() {
+    }
+
+    public M_Locacao(Long id){
+        this.id = id;
+    }
+
     // Getters e Setters
     public Long getId() {
         return id;

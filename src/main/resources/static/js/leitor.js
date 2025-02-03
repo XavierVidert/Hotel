@@ -29,7 +29,6 @@ function lerProduto(){
 
 	Quagga.onDetected(function(data) {
 		const currentCode = data.codeResult.code;
-
 		if (lastCodes.length === 0 || lastCodes[lastCodes.length - 1] === currentCode) {
 			// Adiciona o código se for o primeiro ou igual ao anterior
 			lastCodes.push(currentCode);

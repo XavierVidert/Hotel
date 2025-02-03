@@ -1,1 +1,20 @@
-<div class="mt-3 mb-3 item-consumo"></div>
+<div class="item-consumo">
+    <hr class="separador-produto">
+    <div class="row">
+        <div class="col-md-8">
+            <b>Produto: </b><span th:text="${consumo.produto.descricao}"></span>
+        </div>
+        <div class="col-md-4">
+            <b>Data: </b><span th:text="${#temporals.format(consumo.data, 'dd/MM/yyyy HH:mm')}"></span>
+        </div>
+        <div class="col-md-4">
+            <b>Valor Un.: </b>R$ <span th:text="${#numbers.formatDecimal(consumo.preco, 1, 2)}"></span>
+        </div>
+        <div class="col-md-4">
+            <b>Quantidade: </b><span th:text="${consumo.quantidade}"></span>
+        </div>
+        <div class="col-md-4">
+            <b>Total : </b>R$ <span th:text="${#numbers.formatDecimal(consumo.preco * consumo.quantidade, 1, 2)}"></span>
+        </div>
+    </div>
+</div>
