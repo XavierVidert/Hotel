@@ -22,6 +22,7 @@
           integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <!--Custom-->
+    <link rel="stylesheet" href="/css/default.css"/>
     <script src="/js/leitor.js" defer></script>
     <script src="/js/consumo.js" defer></script>
     <style type="text/css">
@@ -48,7 +49,7 @@
             padding: 0 !important;
         }
         #consumos-container {
-            max-height: 60vh; /* Ajuste conforme necessário */
+            max-height: 55vh;
             overflow-y: auto;
             border: 1px solid black;
             border-radius: 0.325rem;
@@ -61,47 +62,15 @@
             background: white;
             z-index: 10;
             border-bottom: 2px solid black;
-            padding: 10px 0;
             margin: 0 !important;
             padding: 0 !important;
         }
 
+
     </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="/">Home</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                       aria-expanded="false">
-                        Cadastro
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Locação</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">Reserva</a></li>
-                    </ul>
-                </li>
-            </ul>
-            <a class="btn btn-danger" id="btnLogout">Logout</a>
-        </div>
-    </div>
-</nav>
+<div th:insert="nav/navbar"></div>
 <div class="container">
     <div class="leitor-container row mt-3">
         <div class="col-8 mb-3">
@@ -184,14 +153,14 @@
                         <b>Data: </b><span th:text="${#temporals.format(consumo.data, 'dd/MM/yyyy HH:mm')}"></span>
                     </div>
                     <div class="col-md-4">
-                        <b>Valor Un.: </b>R$ <span th:text="${#numbers.formatDecimal(consumo.preco, 1, 2)}"></span>
+                        <b>Valor Un.: </b><span th:text="${#numbers.formatCurrency(consumo.preco)}"></span>
                     </div>
                     <div class="col-md-4">
                         <b>Quantidade: </b><span th:text="${consumo.quantidade}"></span>
                     </div>
                     <div class="col-md-4">
-                        <b>Total : </b>R$ <span
-                            th:text="${#numbers.formatDecimal(consumo.preco * consumo.quantidade, 1, 2)}"></span>
+                        <b>Total : </b><span
+                            th:text="${#numbers.formatCurrency(consumo.preco * consumo.quantidade)}"></span>
                     </div>
                 </div>
             </div>

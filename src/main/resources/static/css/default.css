@@ -1,0 +1,25 @@
+@font-face {
+    font-family: 'Univers Black Italic';
+    src: url('/fonts/univers-black-italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Univers';
+    src: url('/fonts/univers.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+* {
+    font-family: 'Univers','Univers Black Italic';
+    font-size: 14px;
+}
+nav{
+    font-style: italic;
+    background: rgb(60,96,167);
+}
+.btn-xs {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    line-height: 1;
+}
