@@ -12,223 +12,146 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!--JQUERY-->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <!--Font Awesome-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-          integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-          crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <!--CUSTOMS-->
-    <link rel="stylesheet" href="/css/default.css"/>
     <script src="/js/index.js" defer></script>
     <title>Hoteis SENAI</title>
     <style>
         .card_locacao{
-            border: 0.5px solid #bfbfbf;
+            border: 0.5px solid #5e5e5e;
             border-radius: 10px;
             padding: 3px;
             margin: 4px;
-            box-shadow: 0.2em 0.2em 0.5em #ddd;
         }
         #realizadas, #em_curso{
-            border-right: 0.5px solid #dfdfdf;
-        }
-        h4{
-            background: rgb(60,96,167);
-            color: #fff;
-            margin: 0 -10px;
-            border-radius: 0.325rem;
-        }
-        .lista-locacoes{
-            max-height: 80vh;
-            overflow-y: auto;
-        }
-        .lista-locacoes h4{
-            position: sticky;
-            top: 0;
-        }
-        hr{
-            z-index: -1;
+            border-right: 0.5px solid #5e5e5e;
         }
     </style>
 </head>
 <body>
-<div th:insert="nav/navbar"></div>
-<div class="container">
-    <div class="d-flex w-100 position-relative align-items-center">
-        <h2 class="flex-grow-1 text-center m-0">Locações</h2>
-        <a class="btn btn-sm btn-primary position-absolute end-0" href="/cadLocacao"><i class="fa-solid fa-plus"></i> Locação</a>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Cadastro
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/cadLocacao">Locação</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Reserva</a></li>
+                        <li><a class="dropdown-item" href="/consumo">Consumos</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <a class="btn btn-danger" id="btnLogout">Logout</a>
+        </div>
     </div>
+</nav>
+<div class="container">
+    <h2 class="text-center">Minhas Locações</h2>
     <div class="row">
-        <div class="col-4 lista-locacoes" id="realizadas">
+        <div class="col-4" id="realizadas">
             <h4 class="text-center">Realizadas</h4>
+            <hr/>
             <div class="row card_locacao" th:each="locacao : ${realizadas}">
-                <div class="col-md-12 text-center">
-                    <b>Cód. Locação <span th:text="${locacao.id}"></span></b>
-                </div>
-                <hr class="p-0 m-0 mt-1"/>
-                <div class="col-md-6" >
-                    <span><b>Quarto</b></span>
-                </div>
-                <div class="col-md-6">
-                    <span><b>Senha</b></span>
-                </div>
-                <div class="col-md-6" >
+                <div class="col-6" >
+                    <span><b>Quarto: </b></span>
                     <span th:text="${locacao.nome}"></span>
                 </div>
-                <div class="col-md-6">
-                    <span th:text="${locacao.senha}"></span>
+                <div class="col-6">
+                    <span><b>Preço: </b></span>
+                    <span th:text="${#numbers.formatDecimal(locacao.preco * locacao.diarias, 2, 2)}"></span>
                 </div>
-                <div class="col-md-6" >
-                    <span><b>Check-In</b></span>
-                </div>
-                <div class="col-md-6">
-                    <span><b>Check-Out</b></span>
-                </div>
-                <div class="col-md-6" >
+                <div class="col-6" >
+                    <span><b>Check-In: </b></span>
                     <span th:text="${#temporals.format(locacao.checkIn, 'dd/MM/yyyy HH:mm')}"></span>
                 </div>
-                <div class="col-md-6">
+                <div class="col-6">
+                    <span><b>Check-Out: </b></span>
                     <span th:text="${#temporals.format(locacao.checkOut, 'dd/MM/yyyy HH:mm')}"></span>
                 </div>
-                <div class="col-md-6">
-                    <span><b>Diárias</b></span>
+                <div class="col-6">
+                    <span><b>Senha: </b></span>
+                    <span th:text="${locacao.senha}"></span>
                 </div>
-                <div class="col-md-6">
-                    <span><b>Valor Diária</b></span>
-                </div>
-                <div class="col-md-6">
+                <div class="col-6">
+                    <span><b>Diárias: </b></span>
                     <span th:text="${locacao.diarias}"></span>
-                </div>
-                <div class="col-md-6">
-                    <span th:text="${#numbers.formatCurrency(locacao.preco)}"></span>
-                </div>
-                <div class="col-md-6">
-                    <span><b>Valor Consumos</b></span>
-                </div>
-                <div class="col-md-6">
-                    <span><b>Valor Total</b></span>
-                </div>
-                <div class="col-md-6">
-                    <span th:text="${#numbers.formatCurrency(locacao.totalConsumo)}"></span>
-                </div>
-                <div class="col-md-6">
-                    <span th:text="${#numbers.formatCurrency(locacao.preco * locacao.diarias + locacao.totalConsumo)}"></span>
                 </div>
             </div>
         </div>
-        <div class="col-4 lista-locacoes" id="em_curso">
+        <div class="col-4" id="em_curso">
             <h4 class="text-center">Em curso</h4>
+            <hr/>
             <div class="row card_locacao" th:each="locacao : ${em_curso}">
-                <div class="col-md-8 text-center">
-                    <b>Cód. Locação <span th:text="${locacao.id}"></span></b>
-                </div>
-                <div class="col-md-4 text-end">
-                    <a class="btn btn-xs btn-primary" th:href="@{/consumo/{id}(id=${locacao.id})}"><i class="fa-solid fa-plus"></i> Consumo</a>
-                </div>
-                <hr class="p-0 m-0 mt-1"/>
-                <div class="col-md-6" >
-                    <span><b>Quarto</b></span>
-                </div>
-                <div class="col-md-6">
-                    <span><b>Senha</b></span>
-                </div>
-                <div class="col-md-6" >
+                <div class="col-6" >
+                    <span><b>Quarto: </b></span>
                     <span th:text="${locacao.nome}"></span>
                 </div>
-                <div class="col-md-6">
-                    <span th:text="${locacao.senha}"></span>
+                <div class="col-6">
+                    <span><b>Preço: </b></span>
+                    <span th:text="${#numbers.formatDecimal(locacao.preco * locacao.diarias, 2, 2)}"></span>
                 </div>
-                <div class="col-md-6" >
-                    <span><b>Check-In</b></span>
-                </div>
-                <div class="col-md-6">
-                    <span><b>Check-Out</b></span>
-                </div>
-                <div class="col-md-6" >
+                <div class="col-6" >
+                    <span><b>Check-In: </b></span>
                     <span th:text="${#temporals.format(locacao.checkIn, 'dd/MM/yyyy HH:mm')}"></span>
                 </div>
-                <div class="col-md-6">
+                <div class="col-6">
+                    <span><b>Check-Out: </b></span>
                     <span th:text="${#temporals.format(locacao.checkOut, 'dd/MM/yyyy HH:mm')}"></span>
                 </div>
-                <div class="col-md-6">
-                    <span><b>Diárias</b></span>
+                <div class="col-6">
+                    <span><b>Senha: </b></span>
+                    <span th:text="${locacao.senha}"></span>
                 </div>
-                <div class="col-md-6">
-                    <span><b>Valor Diária</b></span>
-                </div>
-                <div class="col-md-6">
+                <div class="col-6">
+                    <span><b>Diárias: </b></span>
                     <span th:text="${locacao.diarias}"></span>
                 </div>
-                <div class="col-md-6">
-                    <span th:text="${#numbers.formatCurrency(locacao.preco)}"></span>
-                </div>
-                <div class="col-md-6">
-                    <span><b>Valor Consumos</b></span>
-                </div>
-                <div class="col-md-6">
-                    <span><b>Valor Total</b></span>
-                </div>
-                <div class="col-md-6">
-                    <span th:text="${#numbers.formatCurrency(locacao.totalConsumo)}"></span>
-                </div>
-                <div class="col-md-6">
-                    <span th:text="${#numbers.formatCurrency(locacao.preco * locacao.diarias + locacao.totalConsumo)}"></span>
+                <div class="col-12">
+                    <a class="btn btn-success w-100" th:href="@{/consumo/{id}(id =${locacao.id})}">consumo
+                    </a>
                 </div>
             </div>
         </div>
-        <div class="col-4 lista-locacoes" id="reservas">
+        <div class="col-4" id="reservas">
             <h4 class="text-center">Reservas</h4>
+            <hr/>
             <div class="row card_locacao" th:each="locacao : ${futuras}">
-                <div class="col-md-12 text-center">
-                    <b>Cód. Locação <span th:text="${locacao.id}"></span></b>
-                </div>
-                <hr class="p-0 m-0 mt-1"/>
-                <div class="col-md-6" >
-                    <span><b>Quarto</b></span>
-                </div>
-                <div class="col-md-6">
-                    <span><b>Senha</b></span>
-                </div>
-                <div class="col-md-6" >
+                <div class="col-6" >
+                    <span><b>Quarto: </b></span>
                     <span th:text="${locacao.nome}"></span>
                 </div>
-                <div class="col-md-6">
-                    <span th:text="${locacao.senha}"></span>
+                <div class="col-6">
+                    <span><b>Preço: </b></span>
+                    <span th:text="${#numbers.formatDecimal(locacao.preco * locacao.diarias, 2, 2)}"></span>
                 </div>
-                <div class="col-md-6" >
-                    <span><b>Check-In</b></span>
-                </div>
-                <div class="col-md-6">
-                    <span><b>Check-Out</b></span>
-                </div>
-                <div class="col-md-6" >
+                <div class="col-6" >
+                    <span><b>Check-In: </b></span>
                     <span th:text="${#temporals.format(locacao.checkIn, 'dd/MM/yyyy HH:mm')}"></span>
                 </div>
-                <div class="col-md-6">
+                <div class="col-6">
+                    <span><b>Check-Out: </b></span>
                     <span th:text="${#temporals.format(locacao.checkOut, 'dd/MM/yyyy HH:mm')}"></span>
                 </div>
-                <div class="col-md-6">
-                    <span><b>Diárias</b></span>
+                <div class="col-6">
+                    <span><b>Senha: </b></span>
+                    <span th:text="${locacao.senha}"></span>
                 </div>
-                <div class="col-md-6">
-                    <span><b>Valor Diária</b></span>
-                </div>
-                <div class="col-md-6">
+                <div class="col-6">
+                    <span><b>Diárias: </b></span>
                     <span th:text="${locacao.diarias}"></span>
-                </div>
-                <div class="col-md-6">
-                    <span th:text="${#numbers.formatCurrency(locacao.preco)}"></span>
-                </div>
-                <div class="col-md-6">
-                    <span><b>Valor Consumos</b></span>
-                </div>
-                <div class="col-md-6">
-                    <span><b>Valor Total</b></span>
-                </div>
-                <div class="col-md-6">
-                    <span th:text="${#numbers.formatCurrency(locacao.totalConsumo)}"></span>
-                </div>
-                <div class="col-md-6">
-                    <span th:text="${#numbers.formatCurrency(locacao.preco * locacao.diarias + locacao.totalConsumo)}"></span>
                 </div>
             </div>
         </div>
