@@ -37,7 +37,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active" aria-current="page" href="/">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Link</a>
@@ -50,7 +50,6 @@
                         <li><a class="dropdown-item" href="/cadLocacao">Locação</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="#">Reserva</a></li>
-                        <li><a class="dropdown-item" href="/consumo">Consumos</a></li>
                     </ul>
                 </li>
             </ul>
@@ -71,7 +70,7 @@
                 </div>
                 <div class="col-6">
                     <span><b>Preço: </b></span>
-                    <span th:text="${#numbers.formatDecimal(locacao.preco * locacao.diarias, 2, 2)}"></span>
+                    <span th:text="${#numbers.formatCurrency(locacao.preco * locacao.diarias)}"></span>
                 </div>
                 <div class="col-6" >
                     <span><b>Check-In: </b></span>
@@ -88,6 +87,14 @@
                 <div class="col-6">
                     <span><b>Diárias: </b></span>
                     <span th:text="${locacao.diarias}"></span>
+                </div>
+                <div class="col-6">
+                    <span><b>Consumo: </b></span>
+                    <span th:text="${#numbers.formatCurrency(locacao.totalConsumo)}"></span>
+                </div>
+                <div class="col-6">
+                    <span><b>Total: </b></span>
+                    <span th:text="${#numbers.formatCurrency((locacao.preco * locacao.diarias) + locacao.totalConsumo)}"></span>
                 </div>
             </div>
         </div>
@@ -101,7 +108,7 @@
                 </div>
                 <div class="col-6">
                     <span><b>Preço: </b></span>
-                    <span th:text="${#numbers.formatDecimal(locacao.preco * locacao.diarias, 2, 2)}"></span>
+                    <span th:text="${#numbers.formatCurrency(locacao.preco * locacao.diarias)}"></span>
                 </div>
                 <div class="col-6" >
                     <span><b>Check-In: </b></span>
@@ -118,6 +125,14 @@
                 <div class="col-6">
                     <span><b>Diárias: </b></span>
                     <span th:text="${locacao.diarias}"></span>
+                </div>
+                <div class="col-6">
+                    <span><b>Consumo: </b></span>
+                    <span th:text="${#numbers.formatCurrency(locacao.totalConsumo)}"></span>
+                </div>
+                <div class="col-6">
+                    <span><b>Total: </b></span>
+                    <span th:text="${#numbers.formatCurrency((locacao.preco * locacao.diarias) + locacao.totalConsumo)}"></span>
                 </div>
                 <div class="col-12">
                     <a class="btn btn-success w-100" th:href="@{/consumo/{id}(id =${locacao.id})}">consumo
@@ -135,7 +150,7 @@
                 </div>
                 <div class="col-6">
                     <span><b>Preço: </b></span>
-                    <span th:text="${#numbers.formatDecimal(locacao.preco * locacao.diarias, 2, 2)}"></span>
+                    <span th:text="${#numbers.formatCurrency(locacao.preco * locacao.diarias)}"></span>
                 </div>
                 <div class="col-6" >
                     <span><b>Check-In: </b></span>
@@ -152,6 +167,14 @@
                 <div class="col-6">
                     <span><b>Diárias: </b></span>
                     <span th:text="${locacao.diarias}"></span>
+                </div>
+                <div class="col-6">
+                    <span><b>Consumo: </b></span>
+                    <span th:text="${#numbers.formatCurrency(locacao.totalConsumo)}"></span>
+                </div>
+                <div class="col-6">
+                    <span><b>Total: </b></span>
+                    <span th:text="${#numbers.formatCurrency((locacao.preco * locacao.diarias) + locacao.totalConsumo)}"></span>
                 </div>
             </div>
         </div>

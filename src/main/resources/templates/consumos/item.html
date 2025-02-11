@@ -8,13 +8,13 @@
             <b>Data: </b><span th:text="${#temporals.format(consumo.data, 'dd/MM/yyyy HH:mm')}"></span>
         </div>
         <div class="col-md-4">
-            <b>Valor Un.: </b><span th:text="${#numbers.formatCurrency(consumo.preco)}"></span>
+            <b>Valor Un.: </b><span th:text="${#numbers.formatCurrency(consumo.preco, 'BRL')}"></span>
         </div>
         <div class="col-md-4">
             <b>Quantidade: </b><span th:text="${consumo.quantidade}"></span>
         </div>
         <div class="col-md-4">
-            <b>Total : </b><span th:text="${#numbers.formatCurrency(consumo.preco * consumo.quantidade)}"></span>
+            <b>Total : </b><span th:text="${#numbers.formatCurrency(consumo.preco * consumo.quantidade, 'BRL')}"></span>
         </div>
     </div>
 </div>

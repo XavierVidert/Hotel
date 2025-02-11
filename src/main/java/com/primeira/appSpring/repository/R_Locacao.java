@@ -91,4 +91,10 @@ public interface R_Locacao extends JpaRepository<M_Locacao, Long> {
             "GROUP BY 1,2,3,4,5,6,7 " +
             "ORDER BY 1", nativeQuery = true)
     List<M_ViewLocacao> getLocacoesRealizadas(@Param("id_usuario") Long id_usuario);
+
+    @Query(value="select * " +
+            "from locacao " +
+            "where (cast(check_out as date) > now() or cast(check_out as date) = cast(check_in as date)) " +
+            "and now() between check_in and check_out",nativeQuery = true)
+    List<M_Locacao> getLocacoesGerarDiarias();
 }
