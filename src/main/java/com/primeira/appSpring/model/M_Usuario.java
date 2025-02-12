@@ -12,12 +12,11 @@ public class M_Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @Column(unique = true)
     private String usuario;
     @Column(unique = true)
-    private String apelido;
     private String senha;
+    private String email;
 
     public Long getId() {
         return id;
@@ -35,19 +34,19 @@ public class M_Usuario {
         this.usuario = usuario;
     }
 
-    public String getApelido() {
-        return apelido;
-    }
-
-    public void setApelido(String apelido) {
-        this.apelido = apelido;
-    }
-
     public String getSenha() {
         return senha;
     }
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

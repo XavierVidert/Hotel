@@ -22,10 +22,10 @@ public class C_Usuario {
 
     @PostMapping("/cadastro")
     public String postCadastro(@RequestParam("usuario") String usuario,
-                               @RequestParam("apelido") String apelido,
+                               @RequestParam("email") String email,
                                @RequestParam("senha") String senha,
                                @RequestParam("conf_senha") String conf_senha){
-        M_Usuario m_usuario = s_cadastro.cadastrarUsuario(usuario, apelido, senha, conf_senha);
+        M_Usuario m_usuario = s_cadastro.cadastrarUsuario(usuario, email, senha, conf_senha);
         if(m_usuario != null){
             return "index";
         }

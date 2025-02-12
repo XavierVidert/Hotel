@@ -26,7 +26,7 @@ public class S_Diarias {
     public void gerarDiarias() {
         List<M_Locacao> locacoes = r_locacao.getLocacoesGerarDiarias();
         M_Produto diaria = new M_Produto();
-        diaria.setId(Long.parseLong("8"));
+        diaria.setId(Long.parseLong("2"));
 
         for(M_Locacao locacao : locacoes){
             M_Consumo m_consumo = new M_Consumo();
