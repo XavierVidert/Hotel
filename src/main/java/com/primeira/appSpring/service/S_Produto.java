@@ -18,6 +18,6 @@ public class S_Produto {
     }
 
     public M_Produto getProdutoById(Long id){
-        return (M_Produto) r_produto.getReferenceById(id);
+        return r_produto.findById(id).orElse(null);
     }
 }

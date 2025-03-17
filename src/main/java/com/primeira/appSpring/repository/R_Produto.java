@@ -2,6 +2,7 @@ package com.primeira.appSpring.repository;
 
 import com.primeira.appSpring.model.M_API;
 import com.primeira.appSpring.model.M_Produto;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -10,7 +11,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Repository
-public interface R_Produto {
+public interface R_Produto extends JpaRepository<M_Produto,Long> {
 
     @Query(value = "WITH vendas_produto AS (" +
             "    SELECT " +
@@ -43,11 +44,5 @@ public interface R_Produto {
             "    ON vp.id_produto = cp.id_produto " +
             "LEFT JOIN produto p " +
             "    ON CAST(p.cod_barras AS bigint) = vp.id_produto", nativeQuery = true)
-
     List<M_API> getSaldoProduto(@Param("data_base") LocalDate dataBase);
-    @Query("SELECT FROM M_Produto p")
-    List<M_Produto> findAll();
-
-    @Query("SELECT FROM M_Produto p WHERE p.id = :id")
-    M_Produto getReferenceById(@Param("id") Long id);
 }
