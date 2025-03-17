@@ -2,11 +2,12 @@ package com.primeira.appSpring.model;
 
 import java.util.Date;
 
-public interface M_API {
-    String getNome();
-    Long getQuantidade();
-    Long getMin();
-    Long getMax();
-    Double getCusto_medio();
-    Date getUltima_Compra();
+public class M_API {
+    private String nome;
+    private Long quantidade;
+    private Long min;
+    private Long max;
+    private Double custo_medio;
+    private Date ultima_compra;
+
 }

@@ -3,10 +3,8 @@ package com.primeira.appSpring.controller;
 import com.primeira.appSpring.model.M_API;
 import com.primeira.appSpring.service.S_API;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -19,12 +17,7 @@ public class C_API {
     }
 
     @GetMapping("/API/{data}")
-    @ResponseBody
-    public List<M_API> getSaldoProduto(@PathVariable("data") String data, Model model) {
-        List<M_API> saldoProduto = s_api.getSaldoProduto(data);
-
-        model.addAttribute("saldoProduto", saldoProduto);
-
-        return saldoProduto;
+    public List<M_API> getSaldoProduto(@PathVariable("data") String data){
+        return s_api.getSaldoProduto(data);
     }
 }

@@ -13,7 +13,7 @@ public class S_Produto {
     @Autowired
     private R_Produto r_produto;
 
-    public List<M_API> getProdutos(){
+    public List<M_Produto> getProdutos(){
         return r_produto.findAll();
     }
 
