@@ -21,26 +21,26 @@ public class M_Consumo {
     private LocalDateTime data;
 
     public Long getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    public M_Locacao getLocacao() {
+    public com.primeira.appSpring.model.M_Locacao getLocacao() {
         return locacao;
     }
 
-    public void setLocacao(M_Locacao locacao) {
+    public void setLocacao(com.primeira.appSpring.model.M_Locacao locacao) {
         this.locacao = locacao;
     }
 
-    public M_Produto getProduto() {
+    public com.primeira.appSpring.model.M_Produto getProduto() {
         return produto;
     }
 
-    public void setProduto(M_Produto produto) {
+    public void setProduto(com.primeira.appSpring.model.M_Produto produto) {
         this.produto = produto;
     }
 

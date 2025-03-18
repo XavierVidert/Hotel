@@ -33,16 +33,16 @@ public interface R_Produto extends JpaRepository<M_Produto,Long> {
             ") " +
             "SELECT " +
             "    vp.id_produto AS id, " +
-            "    COALESCE(cp.quantidade, 0) - COALESCE(vp.quantidade, 0) AS saldo, " +
+            "    COALESCE(cp.quantidade, 0) - COALESCE(vp.quantidade, 0) AS quantidade, " +
             "    vp.preco_medio_venda AS custo_medio, " +
             "    10 AS min, " +
             "    100 AS max, " +
-            "    p.nome AS nome_produto, " +
+            "    p.cod_barras AS produto, " +
             "    cp.ultima_compra AS ultima_compra " +
             "FROM vendas_produto vp " +
             "LEFT JOIN compras_produto cp " +
             "    ON vp.id_produto = cp.id_produto " +
             "LEFT JOIN produto p " +
-            "    ON CAST(p.cod_barras AS bigint) = vp.id_produto", nativeQuery = true)
+            "    ON p.id = vp.id_produto", nativeQuery = true)
     List<M_API> getSaldoProduto(@Param("data_base") LocalDate dataBase);
 }
