@@ -15,7 +15,6 @@ public class S_API {
 
     public List<M_API>getSaldoProduto(String dataParam){
         LocalDate data = LocalDate.parse((dataParam));
-
         return r_produto.getSaldoProduto(data);
     }
 }
